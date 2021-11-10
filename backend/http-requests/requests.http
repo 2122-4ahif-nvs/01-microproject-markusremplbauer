@@ -1,0 +1,36 @@
+GET http://localhost:8080/hello
+
+### Zeitserver
+
+GET http://localhost:8080/time
+
+###
+
+GET http://localhost:8080/customer/id/susi
+
+###
+
+GET http://localhost:8080/customer/id/hansi
+
+###
+
+GET http://localhost:8080/customer?fn=Dagobert&ln=Duck
+
+###
+
+POST http://localhost:8080/customer
+Content-Type: application/x-www-form-urlencoded
+
+name=Dagobert&dob=2021-10-18
+
+###
+
+POST http://localhost:8080/customer/name
+Content-Type: application/json
+
+{
+  "name":"Dagobert",
+  "dob":"2021-10-18"
+}
+
+###

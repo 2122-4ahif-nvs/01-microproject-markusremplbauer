@@ -1,0 +1,51 @@
+@startuml
+
+class Stichwort {
+    - stichwort: String
+}
+
+class Kauf {
+    - id: int
+    - datum: LocalDate
+}
+
+class Buch {
+    - id: int
+    - autor: String
+    - titel: String
+    - fachrichtung: Fachrichtung
+    - verlag: String
+    - isbn: String
+    - kurzerklaerung: String
+    - entlehnDauer: Duration
+    - mahnspesen: double
+    - kauf: Kauf
+    - preis: double
+}
+
+class Entlehner {
+    - name: String
+    - email: String
+    - adresse: String
+    - telefonnummer: String
+    - geburtsdatum: LocalDate
+}
+
+class Entlehnvorgang {
+    - entlehnDatum: LocalDate
+    - buch: Buch
+    - entlehner: Entlehner
+}
+
+class Stichwortzuteilung {
+    - buch: Buch
+    - stichwort: Stichwort
+}
+
+Buch "*" -- "1" Kauf: Teil von >
+Buch "*" -- "*" Stichwort: > zugeteilt zu
+Buch "*" -- "*" Entlehner: < entlehnt
+(Buch, Entlehner) .. Entlehnvorgang
+(Buch, Stichwort) .. Stichwortzuteilung
+
+@enduml
