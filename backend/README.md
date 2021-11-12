@@ -1,4 +1,4 @@
-# 01-microproject-markusremplbuaer Project
+# 01-microproject-markusremplbauer
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
