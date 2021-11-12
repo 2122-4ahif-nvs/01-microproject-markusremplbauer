@@ -1,12 +1,13 @@
 package at.htl.library.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
-@Entity
+@NamedQuery(
+        name = "Customer.findAll",
+        query = "select c from SM_CUSTOMER c"
+)
+@Entity(name = "SM_CUSTOMER")
 public class Customer {
 
     @Id
