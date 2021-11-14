@@ -1,8 +1,8 @@
-package at.htl.library.boundary;
+package at.htl.vehicleworkshop.boundary;
 
 
-import at.htl.library.entity.Customer;
-import at.htl.library.control.CustomerRepository;
+import at.htl.vehicleworkshop.entity.Customer;
+import at.htl.vehicleworkshop.control.CustomerRepository;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;

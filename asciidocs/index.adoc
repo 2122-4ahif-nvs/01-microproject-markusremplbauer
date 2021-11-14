@@ -11,6 +11,6 @@ ifdef::backend-html5[]
 
 [plantuml, cld, png, align=left]
 ----
-include::plantuml/library.puml[]
+include::plantuml/vehicle-workshop.puml[]
 ----
 

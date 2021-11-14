@@ -1,0 +1,49 @@
+@startuml
+
+left to right direction
+
+class Vehicle{
+    - vehicleId: Long
+    - customer: Customer
+}
+
+class Person{
+    - name: String
+    - email: String
+    - address: String
+    - phone: String
+    - dateOfBirth: LocalDate
+}
+
+class Customer{
+    - customerPoints: int
+}
+
+class Employee{
+    - salary: double
+    - job: String
+}
+
+class EmployeeSkill{
+    - employee: Employee
+    - skill: String
+}
+
+class Service{
+    - serviceId: Long
+    - car: Car
+    - employee: Employee
+    - price: double
+    - dateOfCompletion: LocalDate
+    - plannedDateOfCompletion: LocalDate
+}
+
+Person <|-- Customer
+Person <|-- Employee
+Service "*" --> "1" Vehicle
+Service "*" --> "1" Employee
+Vehicle "*" --> "1" Customer
+EmployeeSkill "*" --> "1" Employee
+
+
+@enduml
