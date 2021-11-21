@@ -1,5 +1,5 @@
 #!/bin/bash
-#set -e
+set -e
 
 DIR="./db-postgres"
 if [ -d "$DIR" ]; then
