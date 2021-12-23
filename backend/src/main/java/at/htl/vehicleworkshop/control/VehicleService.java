@@ -12,7 +12,7 @@ public class VehicleService {
     VehicleRepository vehicleRepository;
 
 
-    public List<Vehicle> getAll() {
+    public List<Vehicle> findAll() {
         return vehicleRepository.listAll();
     }
 
@@ -22,5 +22,15 @@ public class VehicleService {
 
     public List<Vehicle> findByOwnerId(Long id) {
         return vehicleRepository.findByOwnerId(id);
+    }
+
+    public void persist(Vehicle vehicle) {
+        vehicleRepository.persist(vehicle);
+    }
+
+    public Vehicle removeVehicle(long vehicleId) {
+        Vehicle vehicle = vehicleRepository.findById(vehicleId);
+        vehicleRepository.deleteById(vehicleId);
+        return vehicle;
     }
 }

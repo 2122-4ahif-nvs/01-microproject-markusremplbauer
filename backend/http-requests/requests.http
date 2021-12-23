@@ -8,4 +8,114 @@ GET http://localhost:8080/vehicle/1
 
 GET http://localhost:8080/api/vehicle/owner/2
 
+###
+
+POST http://localhost:8080/api/graphql
+Content-Type: application/graphql
+
+query allVehicles {
+  allVehicles {
+    id,
+    vin,
+    manufacturer,
+    model,
+    type,
+    owner {
+      id,
+      name,
+      email,
+      phoneNumber,
+      dob
+    }
+  }
+}
+
+###
+
+POST http://localhost:8080/api/graphql
+Content-Type: application/graphql
+
+query findVehicle {
+  findVehicle(vehicleId: 1) {
+    id,
+    vin,
+    model,
+    manufacturer,
+    type,
+    owner {
+      id,
+      name,
+      email,
+      phoneNumber,
+      dob
+    }
+  }
+}
+
+###
+
+POST http://localhost:8080/api/graphql
+Content-Type: application/graphql
+
+query findVehiclesByOwner {
+  findVehiclesByOwner(ownerId: 2) {
+     id,
+    vin,
+    model,
+    manufacturer,
+    type
+  }
+}
+
+###
+
+POST http://localhost:8080/api/graphql
+Content-Type: application/graphql
+
+mutation addVehicle {
+  addVehicle(vehicle: {
+    vin: "1N6DD21S4WC303918"
+    manufacturer: "Mercedes",
+    model: "E Klass",
+    type: "COUPE",
+    owner: {
+      id: 1
+    }
+  })
+  {
+    id,
+    vin,
+    model,
+    manufacturer,
+    type,
+    owner {
+      id
+    }
+  }
+}
+
+###
+
+POST http://localhost:8080/api/graphql
+Content-Type: application/graphql
+
+mutation removeVehicle {
+  removeVehicle(vehicleId: 4) {
+    id,
+    vin,
+    model,
+    manufacturer,
+    type,
+    owner {
+      id,
+      name,
+      email,
+      phoneNumber,
+      dob
+    }
+  }
+}
+
+
+
 
