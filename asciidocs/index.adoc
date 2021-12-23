@@ -9,8 +9,18 @@ ifndef::imagesdir[:imagesdir: images]
 
 ifdef::backend-html5[]
 
+== CLD
+
 [plantuml, cld, png, align=left]
 ----
 include::plantuml/vehicle-workshop.puml[]
 ----
+
+== Beschreibung
+
+Eine Kfz-Werkstätte, bei der Kunden ihre Fahrzeuge zu einem Kfz-Service bringen können.
+Es können Kunden hinzugefügt werden, Mitarbeiter hinzugefügt werden.
+Jeder Mitarbeiter ist auf gewisse Bereiche spezialisiert.
+Ein Kfz-Service hat einen Plan-Fertigstellungstermin, einen Ist-Fertigstellungstermin und einen Preis.
+
 
