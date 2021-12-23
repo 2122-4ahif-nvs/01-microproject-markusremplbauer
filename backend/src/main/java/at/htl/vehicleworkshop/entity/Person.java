@@ -9,7 +9,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "VW_PERSON")
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Person extends PanacheEntityBase {
+public class Person extends PanacheEntityBase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "P_ID")

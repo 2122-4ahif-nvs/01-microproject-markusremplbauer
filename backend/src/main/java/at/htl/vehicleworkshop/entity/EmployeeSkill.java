@@ -12,11 +12,22 @@ public class EmployeeSkill extends PanacheEntityBase {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ES_ID")
     public Long id;
-    @Column(name = "ES_SKILL")
-    public String skill;
+
     @OneToOne
     @JoinColumn(name = "ES_E_ID")
     public Employee employee;
+
+    @Column(name = "ES_SKILL")
+    public String skill;
+
+
+    public EmployeeSkill() {
+    }
+
+    public EmployeeSkill(Employee employee, String skill) {
+        this.employee = employee;
+        this.skill = skill;
+    }
 
     @Override
     public String toString() {

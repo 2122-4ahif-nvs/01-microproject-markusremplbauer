@@ -4,7 +4,11 @@ left to right direction
 
 class Vehicle{
     - vehicleId: Long
-    - customer: Customer
+    - vin: String
+    - model: String
+    - manufacturer: String
+    - type: String
+    - owner: Person
 }
 
 class Person{
@@ -13,10 +17,6 @@ class Person{
     - address: String
     - phone: String
     - dateOfBirth: LocalDate
-}
-
-class Customer{
-    - customerPoints: int
 }
 
 class Employee{
@@ -31,18 +31,18 @@ class EmployeeSkill{
 
 class Service{
     - serviceId: Long
-    - car: Car
+    - vehicle: Vehicle
     - employee: Employee
     - price: double
     - dateOfCompletion: LocalDate
     - plannedDateOfCompletion: LocalDate
 }
 
-Person <|-- Customer
 Person <|-- Employee
 Service "*" --> "1" Vehicle
 Service "*" --> "1" Employee
-Vehicle "*" --> "1" Customer
+Vehicle "*" --> "1" Person
+
 EmployeeSkill "*" --> "1" Employee
 
 
