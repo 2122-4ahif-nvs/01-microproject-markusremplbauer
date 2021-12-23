@@ -1,7 +1,7 @@
 package at.htl.vehicleworkshop.control;
 
-import at.htl.vehicleworkshop.entity.Customer;
 import at.htl.vehicleworkshop.entity.Person;
+import io.quarkus.hibernate.orm.panache.PanacheRepository;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -10,18 +10,5 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @ApplicationScoped
-public class PersonRepository {
-
-    @Inject
-    EntityManager em;
-
-    @Transactional
-    public Person save(Person person) {
-        return em.merge(person);
-    }
-
-    public List<Person> findAll() {
-        return em.createNamedQuery("Person.findAll",Person.class).getResultList();
-    }
-
+public class PersonRepository implements PanacheRepository<Person> {
 }
