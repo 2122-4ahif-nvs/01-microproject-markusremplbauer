@@ -1,7 +1,11 @@
-GET http://localhost:8080/hello
+http://localhost:8080/api/vehicle/getAll
 
 ###
 
-GET http://localhost:8080/customer/findAll
+GET http://localhost:8080/vehicle/1
+
+###
+
+GET http://localhost:8080/api/vehicle/owner/2
 
 

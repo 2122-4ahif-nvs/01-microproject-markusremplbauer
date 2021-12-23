@@ -33,7 +33,7 @@ class VehicleRepositoryTest {
 
         personRepository.persist(owner);
 
-        Vehicle vehicle = new Vehicle("1LNHM87A31Y667552", "S63 AMG", "Mercedes", "Coupe", owner);
+        Vehicle vehicle = new Vehicle("1LNHM87A31Y667552", "S63 AMG", "Mercedes", "COUPE", owner);
         vehicleRepository.persist(vehicle);
         tx.commit();
 
