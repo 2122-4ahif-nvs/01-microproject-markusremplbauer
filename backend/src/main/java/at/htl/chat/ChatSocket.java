@@ -1,4 +1,4 @@
-package at.htl.vehicleworkshop.boundary;
+package at.htl.chat;
 
 import org.jboss.logging.Logger;
 
