@@ -1,1 +1,1 @@
-insert into vw_person(dob, email, name, phonenumber) values ('02.02.1999', 'jan.muster@gmail.com', 'Jan Muster', '001184722910');
+insert into vw_person(p_dob, p_email, p_name, p_phone_number) values ('02.02.1999', 'jan.muster@gmail.com', 'Jan Muster', '001184722910');
