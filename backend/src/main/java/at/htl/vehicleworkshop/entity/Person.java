@@ -1,8 +1,10 @@
 package at.htl.vehicleworkshop.entity;
 
+import at.htl.vehicleworkshop.control.validation.HasLegalAgeConstraint;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -14,12 +16,15 @@ public class Person extends PanacheEntityBase {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "P_ID")
     public Long id;
+    @NotBlank(message = "Name should not be blank")
     @Column(name = "P_NAME")
     public String name;
+    @NotBlank(message = "Email should not be blank")
     @Column(name = "P_EMAIL")
     public String email;
     @Column(name = "P_PHONE_NUMBER")
     public String phoneNumber;
+    @HasLegalAgeConstraint
     @Column(name = "P_DOB")
     public LocalDate dob;
 
