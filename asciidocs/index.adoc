@@ -23,4 +23,8 @@ Es können Kunden hinzugefügt werden, Mitarbeiter hinzugefügt werden.
 Jeder Mitarbeiter ist auf gewisse Bereiche spezialisiert.
 Ein Kfz-Service hat einen Plan-Fertigstellungstermin, einen Ist-Fertigstellungstermin und einen Preis.
 
+== Technologiedokumentation
+
+link:validation.adoc[Validierung]
+
 
