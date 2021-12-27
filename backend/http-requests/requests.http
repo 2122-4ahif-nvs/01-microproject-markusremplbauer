@@ -59,7 +59,7 @@ Content-Type: application/graphql
 
 query findVehiclesByOwner {
   findVehiclesByOwner(ownerId: 2) {
-     id,
+    id,
     vin,
     model,
     manufacturer,
@@ -79,7 +79,10 @@ mutation addVehicle {
     model: "E Klass",
     type: "COUPE",
     owner: {
-      id: 1
+      id: 1,
+      name: "Jan Muster",
+      email: "jan.muster@gmail.com",
+      dob: "1999-02-02"
     }
   })
   {
@@ -87,10 +90,7 @@ mutation addVehicle {
     vin,
     model,
     manufacturer,
-    type,
-    owner {
-      id
-    }
+    type
   }
 }
 

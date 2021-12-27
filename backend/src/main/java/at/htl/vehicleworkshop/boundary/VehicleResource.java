@@ -26,25 +26,25 @@ public class VehicleResource {
     }
 
     @GET
+    @Path("find/{id}")
     @Query("findVehicle")
     @Description("Find Vehicle by vehicleId")
-    @Path("find/{id}")
     public Vehicle findVehicleById(@Name("vehicleId") @PathParam("id") Long vehicleId) {
         return vehicleService.getById(vehicleId);
     }
 
     @GET
+    @Path("owner/{ownerId}")
     @Query("findVehiclesByOwner")
     @Description("Find Vehicles by ownerId")
-    @Path("owner/{ownerId}")
     public List<Vehicle> findByOwnerId(@Name("ownerId") @PathParam("ownerId") Long ownerId) {
         return vehicleService.findByOwnerId(ownerId);
     }
 
     @POST
-    @Transactional
-    @Mutation("addVehicle")
     @Path("addVehicle")
+    @Mutation("addVehicle")
+    @Transactional
     @Consumes(MediaType.APPLICATION_JSON)
     public Vehicle addVehicle(Vehicle vehicle) {
         vehicleService.persist(vehicle);
@@ -52,10 +52,9 @@ public class VehicleResource {
     }
 
     @DELETE
-    @Transactional
-    @Mutation("removeVehicle")
     @Path("remove/{id}")
-    @Produces(MediaType.APPLICATION_JSON)
+    @Mutation("removeVehicle")
+    @Transactional
     public Vehicle removeEmployee(@Name("vehicleId") @PathParam("id") long vehicleId) {
         Vehicle vehicle = vehicleService.removeVehicle(vehicleId);
         return vehicle;
