@@ -1,0 +1,115 @@
+= Validierung
+Markus Remplbauer
+ifndef::imagesdir[:imagesdir: images]
+//:toc-placement!:  // prevents the generation of the doc at this position, so it can be printed afterwards
+:sourcedir: ../src/main/java
+:icons: font
+:sectnums:    // Nummerierung der Überschriften / section numbering
+:toc: left
+
+ifdef::backend-html5[]
+
+link:https://quarkus.io/guides/validation[Quarkus Validation Tutorial]
+
+== Dependency
+[source,xml]
+----
+<dependency>
+<groupId>io.quarkus</groupId>
+<artifactId>quarkus-hibernate-validator</artifactId>
+</dependency>
+----
+
+
+== Nutzen
+
+Felder auf eine definierte Regel einschränken z.B. Felder dürfen nicht leer sein.
+Die Validierung erfolgt im Backend direkt bei den Entitäten nicht auf der Webseite.
+
+== Umsetzung
+=== Annotationen hinzugefügt
+[source,java]
+----
+@NotBlank(message = "Name should not be blank")
+@Column(name = "P_NAME")
+public String name;
+----
+
+
+=== Java Object Validieren
+
+Manuall Validierung
+
+[source,java]
+----
+@Inject
+Validator validator;
+
+...
+
+Set<ConstraintViolation<Person>> violations = validator.validate(person);
+if (violations.isEmpty()) {
+    return Person;
+}
+return violations.toString();
+----
+
+
+Validierung mit Annotation
+
+[source,java]
+----
+@POST
+@Transactional
+@Path("addPerson")
+@Consumes(MediaType.APPLICATION_JSON)
+public Person addPerson(@Valid Person person) {
+    personService.persist(person);
+    return person;
+}
+----
+
+
+== Custom Validation Annotations
+
+=== Interface Constraint
+Damit wir eine eigene Annotation benutzen können
+
+[source,java]
+----
+@Documented
+@Constraint(validatedBy = HasLegalAgeValidator.class)
+@Target( { ElementType.METHOD, ElementType.FIELD })
+@Retention(RetentionPolicy.RUNTIME)
+public @interface HasLegalAgeConstraint  {
+    String message() default "Person has to be of legal age!"; //<1>
+    Class<?>[] groups() default {};
+    Class<? extends Payload>[] payload() default {};
+}
+----
+<1> Message, wenn die Validierung im Validator fehlschlägt.
+
+=== Klasse Validator
+Diese führt die Validierung durch, eine Methode wird implementiert isValid.
+
+[source,java]
+----
+public class HasLegalAgeValidator implements ConstraintValidator<HasLegalAgeConstraint, LocalDate> { //<1>
+
+    @Override
+    public boolean isValid(LocalDate dob, ConstraintValidatorContext constraintValidatorContext) { //<2>
+        return dob.isBefore(LocalDate.now().minusYears(18));
+    }
+}
+----
+<1> Der zu validierende Datentyp.
+<2> Die Methode die den Datentyp validiert.
+
+=== Anwendung
+[source,java]
+----
+@HasLegalAgeConstraint
+@NotNull(message = "DOB should not be null")
+@Column(name = "P_DOB")
+public LocalDate dob;
+----
