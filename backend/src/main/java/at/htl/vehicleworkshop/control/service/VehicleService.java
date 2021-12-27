@@ -1,5 +1,6 @@
-package at.htl.vehicleworkshop.control;
+package at.htl.vehicleworkshop.control.service;
 
+import at.htl.vehicleworkshop.control.repository.VehicleRepository;
 import at.htl.vehicleworkshop.entity.Vehicle;
 
 import javax.enterprise.context.ApplicationScoped;

@@ -1,7 +1,6 @@
 package at.htl.vehicleworkshop.boundary;
 
-import at.htl.vehicleworkshop.control.VehicleService;
-import at.htl.vehicleworkshop.entity.Employee;
+import at.htl.vehicleworkshop.control.service.VehicleService;
 import at.htl.vehicleworkshop.entity.Vehicle;
 import org.eclipse.microprofile.graphql.*;
 

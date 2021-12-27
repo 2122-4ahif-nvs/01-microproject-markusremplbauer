@@ -1,4 +1,4 @@
-package at.htl.vehicleworkshop.control;
+package at.htl.vehicleworkshop.control.repository;
 
 import at.htl.vehicleworkshop.entity.EmployeeSkill;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;

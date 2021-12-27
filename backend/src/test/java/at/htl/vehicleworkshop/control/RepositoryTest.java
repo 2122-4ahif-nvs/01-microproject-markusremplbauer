@@ -1,5 +1,6 @@
 package at.htl.vehicleworkshop.control;
 
+import at.htl.vehicleworkshop.control.repository.*;
 import org.junit.jupiter.api.BeforeEach;
 
 import javax.inject.Inject;

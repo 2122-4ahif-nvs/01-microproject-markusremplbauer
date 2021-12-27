@@ -1,5 +1,9 @@
 package at.htl.vehicleworkshop.control;
 
+import at.htl.vehicleworkshop.control.repository.EmployeeRepository;
+import at.htl.vehicleworkshop.control.repository.PersonRepository;
+import at.htl.vehicleworkshop.control.repository.ServiceRepository;
+import at.htl.vehicleworkshop.control.repository.VehicleRepository;
 import at.htl.vehicleworkshop.entity.Employee;
 import at.htl.vehicleworkshop.entity.Person;
 import at.htl.vehicleworkshop.entity.Service;
