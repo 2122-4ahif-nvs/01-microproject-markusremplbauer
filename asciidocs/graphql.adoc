@@ -1,0 +1,138 @@
+= GraphQL
+Markus Remplbauer
+ifndef::imagesdir[:imagesdir: images]
+//:toc-placement!:  // prevents the generation of the doc at this position, so it can be printed afterwards
+:sourcedir: ../src/main/java
+:icons: font
+:sectnums:    // Nummerierung der Überschriften / section numbering
+:toc: left
+
+ifdef::backend-html5[]
+
+include::https://quarkus.io/guides/smallrye-graphql[Quarkus GraphQL Tutorial]
+
+== Dependency
+[source,xml]
+----
+<dependency>
+<groupId>io.quarkus</groupId>
+<artifactId>quarkus-smallrye-graphql</artifactId>
+</dependency>
+
+----
+
+== Nutzen
+
+GraphQL gibt den Client nur die Felder die in der query angegebenen Felder zurück.
+Anders als bei REST wo das ganze Object mit allen Feldern zurückgegeben wird.
+
+== Alertnativen
+
+* REST
+* gRPC
+
+== Umsetzung
+
+=== Endpoint erstellen
+
+==== Annotationen hinzugefügt
+[source,java]
+----
+@GraphQLApi
+@Produces(MediaType.APPLICATION_JSON)
+public class VehicleResource {}
+----
+
+=== GraphQL Queries
+==== Implementierung
+[source, java]
+----
+@Query("findVehicle")
+@Description("Find Vehicle by vehicleId")
+public Vehicle findVehicleById(@Name("vehicleId") @PathParam("id") Long vehicleId) {
+    return vehicleService.getById(vehicleId);
+}
+----
+==== Endpoint benutzen
+[source, http request]
+----
+POST http://localhost:8080/api/graphql
+Content-Type: application/graphql
+
+query findVehicle {
+  findVehicle(vehicleId: 1) {
+    id,
+    vin,
+    model,
+    manufacturer,
+    type,
+    owner {
+      id,
+      name,
+      email,
+      phoneNumber,
+      dob
+    }
+  }
+}
+----
+Wenn der Owner nicht benötigt wird, kann dieser einfach aus der query entfernt werden und dieser wird nicht vom Server zurückgegeben.
+
+[source,http request]
+----
+POST http://localhost:8080/api/graphql
+Content-Type: application/graphql
+
+query findVehicle {
+  findVehicle(vehicleId: 1) {
+    id,
+    vin,
+    model,
+    manufacturer,
+    type
+  }
+}
+----
+
+=== GraphQL Mutations
+==== Implementierung
+[source, java]
+----
+@Transactional
+@Mutation("addVehicle")
+@Consumes(MediaType.APPLICATION_JSON)
+public Vehicle addVehicle(Vehicle vehicle) {
+    vehicleService.persist(vehicle);
+    return vehicle;
+}
+----
+
+NOTE: bei sämtlichen Methoden muss ein Rückgabewert vorhanden sein
+
+==== Endpoint benutzen
+[source, http request]
+----
+mutation addVehicle {
+  addVehicle(vehicle: {
+    vin: "1N6DD21S4WC303918"
+    manufacturer: "Mercedes",
+    model: "E Klass",
+    type: "COUPE",
+    owner: {
+      id: 1,
+      name: "Jan Muster",
+      email: "jan.muster@gmail.com",
+      dob: "1999-02-02"
+    }
+  })
+  {
+    id,
+    vin,
+    model,
+    manufacturer,
+    type
+  }
+}
+----
+
+
