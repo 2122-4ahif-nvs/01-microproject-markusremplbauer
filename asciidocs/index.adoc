@@ -25,8 +25,8 @@ Ein Kfz-Service hat einen Plan-Fertigstellungstermin, einen Ist-Fertigstellungst
 
 == Technologiedokumentation
 
-link:graphql.html[GraphQL]
+include::graphql.adoc[GraphQL]
 
-link:validation.html[Validierung]
+include::validation.adoc[Validierung]
 
 
