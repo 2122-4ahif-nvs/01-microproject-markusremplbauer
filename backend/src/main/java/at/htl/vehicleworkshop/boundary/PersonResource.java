@@ -27,7 +27,7 @@ public class PersonResource {
     @Path("addPerson")
     @Consumes(MediaType.APPLICATION_JSON)
     public Person addPerson(@Valid Person person) {
-        personService.persist(person);
+        personService.addPerson(person);
         return person;
     }
 

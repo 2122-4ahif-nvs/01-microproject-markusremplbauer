@@ -25,7 +25,8 @@ public class VehicleService {
         return vehicleRepository.findByOwnerId(id);
     }
 
-    public void persist(Vehicle vehicle) {
+    public void addVehicle(Vehicle vehicle) {
+        vehicle.id = null;
         vehicleRepository.persist(vehicle);
     }
 

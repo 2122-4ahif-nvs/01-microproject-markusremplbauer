@@ -22,7 +22,8 @@ public class PersonService {
     }
 
 
-    public void persist(Person person) {
+    public void addPerson(Person person) {
+        person.id = null;
         personRepository.persist(person);
     }
 

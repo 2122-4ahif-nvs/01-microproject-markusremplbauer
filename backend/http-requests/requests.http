@@ -74,7 +74,7 @@ Content-Type: application/graphql
 
 mutation addVehicle {
   addVehicle(vehicle: {
-    vin: "1N6DD21S4WC303918"
+    vin: "1N6DD21S4WC303918",
     manufacturer: "Mercedes",
     model: "E Klass",
     type: "COUPE",

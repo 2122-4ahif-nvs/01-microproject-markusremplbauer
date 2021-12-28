@@ -47,7 +47,7 @@ public class VehicleResource {
     @Transactional
     @Consumes(MediaType.APPLICATION_JSON)
     public Vehicle addVehicle(Vehicle vehicle) {
-        vehicleService.persist(vehicle);
+        vehicleService.addVehicle(vehicle);
         return vehicle;
     }
 
