@@ -112,6 +112,9 @@ NOTE: bei sämtlichen Methoden muss ein Rückgabewert vorhanden sein
 ==== Endpoint benutzen
 [source, http request]
 ----
+POST http://localhost:8080/api/graphql
+Content-Type: application/graphql
+
 mutation addVehicle {
   addVehicle(vehicle: {
     vin: "1N6DD21S4WC303918"
