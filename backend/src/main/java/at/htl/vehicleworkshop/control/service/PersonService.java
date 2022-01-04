@@ -17,7 +17,7 @@ public class PersonService {
         return personRepository.listAll();
     }
 
-    public Person getById(Long id) {
+    public Person findById(Long id) {
         return personRepository.findById(id);
     }
 

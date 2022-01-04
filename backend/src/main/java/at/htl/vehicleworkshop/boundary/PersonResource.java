@@ -10,15 +10,24 @@ import javax.ws.rs.core.MediaType;
 
 import at.htl.vehicleworkshop.control.service.PersonService;
 import at.htl.vehicleworkshop.entity.Person;
+import io.quarkus.qute.CheckedTemplate;
+import io.quarkus.qute.TemplateInstance;
 
 @Path("/person")
 public class PersonResource {
     @Inject
     PersonService personService;
 
+    @CheckedTemplate
+    public static class Templates {
+        public static native TemplateInstance persons(List<Person> persons);
+
+        public static native TemplateInstance person(Person person);
+    }
+
     @GET
     @Path("findAll")
-    public List<Person> getAllPersons() {
+    public List<Person> findAllPersons() {
         return personService.findAll();
     }
 
@@ -34,7 +43,7 @@ public class PersonResource {
     @GET
     @Path("find/{id}")
     public Person findPersonById(@PathParam("id") Long personId) {
-        return personService.getById(personId);
+        return personService.findById(personId);
     }
 
     @DELETE
@@ -45,4 +54,19 @@ public class PersonResource {
         Person person = personService.removePerson(personId);
         return person;
     }
+
+    @GET
+    @Path("qute/find/{id}")
+    @Produces(MediaType.TEXT_HTML)
+    public TemplateInstance quteFindPersonById(@PathParam("id") Long personId) {
+        return Templates.person(personService.findById(personId));
+    }
+
+    @GET
+    @Path("qute/findAll")
+    @Produces(MediaType.TEXT_HTML)
+    public TemplateInstance quteFindAll() {
+        return Templates.persons(personService.findAll());
+    }
+
 }

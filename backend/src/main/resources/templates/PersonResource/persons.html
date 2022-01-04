@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+<style>
+    table, th, td {
+        border: 0.5px solid black;
+    }
+</style>
+<body>
+    <table style="width:50%">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>E-Mail</th>
+            <th>Phone Number</th>
+            <th>Date of Birth</th>
+        </tr>
+        {#for person in persons}
+            <tr>
+                <td>{person.id}</td>
+                <td>{person.name}</td>
+                <td>{person.email}</td>
+                <td>{person.phoneNumber}</td>
+                <td>{person.dob}</td>
+            </tr>
+        {/for}
+    </table>
+</body>
+</html>
