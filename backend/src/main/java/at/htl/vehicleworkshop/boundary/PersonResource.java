@@ -23,6 +23,8 @@ public class PersonResource {
         public static native TemplateInstance persons(List<Person> persons);
 
         public static native TemplateInstance person(Person person);
+
+        public static native TemplateInstance error(String error);
     }
 
     @GET
@@ -59,7 +61,13 @@ public class PersonResource {
     @Path("qute/find/{id}")
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance quteFindPersonById(@PathParam("id") Long personId) {
-        return Templates.person(personService.findById(personId));
+        Person person = personService.findById(personId);
+
+        if (person != null) {
+            return Templates.person(person);
+        }
+        return Templates.error(String.format("Person with id %d not found!", personId));
+
     }
 
     @GET
