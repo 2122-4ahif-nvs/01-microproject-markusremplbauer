@@ -21,7 +21,7 @@ public class VehicleResource {
     @Path("findAll")
     @Query("allVehicles")
     @Description("Find all Vehicles")
-    public List<Vehicle> getAllVehicles() {
+    public List<Vehicle> findAllVehicles() {
         return vehicleService.findAll();
     }
 
@@ -30,7 +30,7 @@ public class VehicleResource {
     @Query("findVehicle")
     @Description("Find Vehicle by vehicleId")
     public Vehicle findVehicleById(@Name("vehicleId") @PathParam("id") Long vehicleId) {
-        return vehicleService.getById(vehicleId);
+        return vehicleService.findById(vehicleId);
     }
 
     @GET
