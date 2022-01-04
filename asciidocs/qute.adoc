@@ -1,0 +1,106 @@
+= Validierung
+Markus Remplbauer
+ifndef::imagesdir[:imagesdir: images]
+//:toc-placement!:  // prevents the generation of the doc at this position, so it can be printed afterwards
+:sourcedir: ../src/main/java
+:icons: font
+:sectnums:    // Nummerierung der Überschriften / section numbering
+:toc: left
+
+ifdef::backend-html5[]
+
+link:https://quarkus.io/guides/qute[Quarkus Qute Tutorial]
+
+== Dependency
+[source,xml]
+----
+<dependency>
+    <groupId>io.quarkus</groupId>
+    <artifactId>quarkus-resteasy-qute</artifactId>
+</dependency>
+----
+
+
+== Nutzen
+
+Qute ist eine Templating-Engine.
+Reflexion ist minimiert.
+Reflexion - zur Laufzeit den Aufbau von Objekten zu erkennen und darauf zuzugreifen
+Rendern - zur Darstellung vorbereiten in unserem Fall ein HTML Dokument
+
+== Alertnativen
+
+* UI-Framworks
+** Angular
+** React
+** Vue
+
+== Umsetzung
+
+=== Define Template
+
+[source,java]
+----
+@CheckedTemplate
+public static class Templates {
+    public static native TemplateInstance person(Person person); //<1>
+}
+----
+<1> The object accessible for the template
+
+=== Create HTML Template
+
+[source,html]
+----
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+<style>
+    table, th, td {
+        border: 0.5px solid black;
+    }
+</style>
+<body>
+<table style="width:50%">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>E-Mail</th>
+        <th>Phone Number</th>
+        <th>Date of Birth</th>
+    </tr>
+    <tr>
+        <td>{person.id}</td>
+        <td>{person.name}</td>
+        <td>{person.email}</td>
+        <td>{person.phoneNumber}</td>
+        <td>{person.dob}</td>
+    </tr>
+</table>
+</body>
+</html>
+----
+Fields of objects parsed as parameter can be accessed.
+
+.Process List<T> Parameter
+[NOTE]
+====
+[source,html]
+----
+...
+
+ {#for person in persons}
+    <tr>
+        <td>{person.id}</td>
+        <td>{person.name}</td>
+        <td>{person.email}</td>
+        <td>{person.phoneNumber}</td>
+        <td>{person.dob}</td>
+    </tr>
+{/for}
+
+...
+----
+====

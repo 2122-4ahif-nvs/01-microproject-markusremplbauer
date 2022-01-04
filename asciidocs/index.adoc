@@ -29,5 +29,7 @@ Ein Kfz-Service hat einen Plan-Fertigstellungstermin, einen Ist-Fertigstellungst
 
 <<validation.adoc#, Validierung>>
 
+<<qute.adoc#, Qute>>
+
 
 
