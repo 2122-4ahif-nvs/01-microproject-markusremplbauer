@@ -15,8 +15,8 @@ link:https://quarkus.io/guides/validation[Quarkus Validation Tutorial]
 [source,xml]
 ----
 <dependency>
-<groupId>io.quarkus</groupId>
-<artifactId>quarkus-hibernate-validator</artifactId>
+    <groupId>io.quarkus</groupId>
+    <artifactId>quarkus-hibernate-validator</artifactId>
 </dependency>
 ----
 

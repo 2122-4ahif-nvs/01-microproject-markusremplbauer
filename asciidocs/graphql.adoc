@@ -15,8 +15,8 @@ include::https://quarkus.io/guides/smallrye-graphql[Quarkus GraphQL Tutorial]
 [source,xml]
 ----
 <dependency>
-<groupId>io.quarkus</groupId>
-<artifactId>quarkus-smallrye-graphql</artifactId>
+    <groupId>io.quarkus</groupId>
+    <artifactId>quarkus-smallrye-graphql</artifactId>
 </dependency>
 
 ----
