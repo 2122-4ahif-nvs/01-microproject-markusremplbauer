@@ -37,7 +37,7 @@ Rendern - zur Darstellung vorbereiten in unserem Fall ein HTML Dokument
 
 == Umsetzung
 
-=== Define Template
+=== Template definieren
 
 [source,java]
 ----
@@ -46,9 +46,9 @@ public static class Templates {
     public static native TemplateInstance person(Person person); //<1>
 }
 ----
-<1> The object accessible for the template
+<1> Das Object das für das Template zur Verfügung steht
 
-=== Create HTML Template
+=== HTML Template erstellen
 
 [source,html]
 ----
@@ -82,9 +82,9 @@ public static class Templates {
 </body>
 </html>
 ----
-Fields of objects parsed as parameter can be accessed.
+Es kann auf die Felder des übergebenen Objects zugegriffen werden.
 
-.Process List<T> Parameter
+.Iterieren von List<T> Parametern
 [NOTE]
 ====
 [source,html]

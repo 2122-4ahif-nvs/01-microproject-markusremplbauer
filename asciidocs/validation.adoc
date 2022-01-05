@@ -36,7 +36,7 @@ public String name;
 ----
 
 
-=== Java Object Validieren
+=== Java Object Validierung
 
 Manuall Validierung
 
@@ -70,7 +70,7 @@ public Person addPerson(@Valid Person person) {
 ----
 
 
-== Custom Validation Annotations
+== Benutzerdefinierte Validierung Annotationen
 
 === Interface Constraint
 Damit wir eine eigene Annotation benutzen können
