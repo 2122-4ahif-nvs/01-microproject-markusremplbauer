@@ -1,0 +1,112 @@
+= gRPC
+Markus Remplbauer
+ifndef::imagesdir[:imagesdir: images]
+//:toc-placement!:  // prevents the generation of the doc at this position, so it can be printed afterwards
+:sourcedir: ../src/main/java
+:icons: font
+:sectnums:    // Nummerierung der Überschriften / section numbering
+:toc: left
+
+ifdef::backend-html5[]
+
+link:https://quarkus.io/guides/grpc-service-implementation[Quarkus gRPC Tutorial]
+
+== Dependency
+[source,xml]
+----
+ <dependency>
+  <groupId>io.quarkus</groupId>
+  <artifactId>quarkus-grpc</artifactId>
+</dependency>
+----
+
+
+== Nutzen
+
+gRPC (Google Remote Procedure Call) Bessere performance als REST für microservices
+
+Remote - Server führt die Methoden aus
+
+Procedure - Methode ohne Rückgabewert
+
+Internet of Things profitiert von diesem Prinzip damit nicht jedes kleine Lämpchen viele Resources braucht.
+
+== Alertnativen
+
+* REST
+* GraphQL
+
+== Umsetzung
+
+=== Application Properties aktualisieren
+[source, properties]
+----
+...
+
+quarkus.grpc.clients.hello.host=localhost
+quarkus.grpc.server.enable-reflection-service=true
+----
+
+=== gRPC Service als PROTO-File definieren
+[source,protobuf]
+----
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "at.htl.grpchello"; // <1>
+option java_outer_classname = "HelloProto";
+
+package hello;
+
+// The greeting service definition.
+service Greeter { <2>
+  // Sends a greeting
+  rpc SayHello (HelloRequest) returns (HelloReply) {}
+}
+
+// The request message containing the user's name.
+message HelloRequest {
+  string name = 1;
+}
+
+// The response message containing the greetings
+message HelloReply {
+  string message = 1;
+}
+----
+<1> Java Package für die generierten Klassen
+<2> Der Service hat die Methode SayHello() welche ein HelloRequest Object konsumiert und ein HelloReply Object produziert
+
+=== Implementierung
+==== Implementierung der Service Methode
+[source, java]
+----
+@GrpcService
+public class HelloService implements Greeter{
+    @Override
+    public Uni<HelloReply> sayHello(HelloRequest request) {
+        return Uni.createFrom().item(() ->
+                HelloReply.newBuilder().setMessage("Hello " + request.getName()).build()
+        );
+    }
+}
+----
+
+==== Bereitstellen des gRPC-Services als Endpoint
+[source, java]
+----
+@Path("/grpchello")
+@Produces(MediaType.TEXT_PLAIN)
+public class HelloResource {
+    @GrpcClient
+    Greeter hello;
+
+    @GET
+    @Path("/{name}")
+    public Uni<String> hello(@PathParam("name") String name) {
+        return hello.sayHello(HelloRequest.newBuilder().setName(name).build())
+                .onItem().transform(HelloReply::getMessage);
+    }
+}
+
+----

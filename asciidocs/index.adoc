@@ -31,5 +31,7 @@ Ein Kfz-Service hat einen Plan-Fertigstellungstermin, einen Ist-Fertigstellungst
 
 <<qute.adoc#, Qute>>
 
+<<grpc.adoc#, gRPC>>
+
 
 
