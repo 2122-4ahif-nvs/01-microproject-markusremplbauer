@@ -23,13 +23,9 @@ link:https://quarkus.io/guides/grpc-service-implementation[Quarkus gRPC Tutorial
 
 == Nutzen
 
-gRPC (Google Remote Procedure Call) Bessere performance als REST für microservices
-
-Remote - Server führt die Methoden aus
-
-Procedure - Methode ohne Rückgabewert
-
-Internet of Things profitiert von diesem Prinzip damit nicht jedes kleine Lämpchen viele Resources braucht.
+gRPC (Google Remote Procedure Call).
+gRPC-Schnittstelle sind leistungsfähig und auch große Datenmengen können schnell übertragen werden.
+Bestehende System können leicht mit gRPC erweitert werden. Der Großteil des Codes kann generiert werden nur die Methoden müssen implementiert werden.
 
 == Alertnativen
 
