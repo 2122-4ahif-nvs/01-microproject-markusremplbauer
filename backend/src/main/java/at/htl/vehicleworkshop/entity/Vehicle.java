@@ -3,6 +3,8 @@ package at.htl.vehicleworkshop.entity;
 import javax.persistence.*;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.Objects;
 
@@ -27,6 +29,7 @@ public class Vehicle extends PanacheEntityBase{
 
     @ManyToOne
     @JoinColumn(name = "V_P_ID")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     public Person owner;
 
     public Vehicle() {
