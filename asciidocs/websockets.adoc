@@ -9,7 +9,7 @@ ifndef::imagesdir[:imagesdir: images]
 
 ifdef::backend-html5[]
 
-link::https://quarkus.io/guides/websockets[Quarkus Websockets Tutorial]
+link:https://quarkus.io/guides/websockets[Quarkus Websockets Tutorial]
 
 == Dependency
 [source,xml]
