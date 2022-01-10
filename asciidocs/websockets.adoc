@@ -1,0 +1,83 @@
+= Websockets
+Markus Remplbauer
+ifndef::imagesdir[:imagesdir: images]
+//:toc-placement!:  // prevents the generation of the doc at this position, so it can be printed afterwards
+:sourcedir: ../src/main/java
+:icons: font
+:sectnums:    // Nummerierung der Überschriften / section numbering
+:toc: left
+
+ifdef::backend-html5[]
+
+link::https://quarkus.io/guides/websockets[Quarkus Websockets Tutorial]
+
+== Dependency
+[source,xml]
+----
+<dependency>
+    <groupId>io.quarkus</groupId>
+    <artifactId>quarkus-websockets</artifactId>
+</dependency>
+----
+
+
+== Nutzen
+
+Es besteht eine aktive Verbindung zwischen Client und Server.
+Der Server kann selbstständig aktiv werden und dem Client alle Informationen zur Verfügung stellen, ohne dass diese vom Client angefragt wurden.
+
+
+== Umsetzung
+=== Websocket Klasse erstellen
+
+[source,java]
+----
+@ServerEndpoint("/chat/{username}")
+@ApplicationScoped
+public class ChatSocket {
+
+    @Inject
+    Logger LOG;
+
+    Map<String, Session> sessions = new ConcurrentHashMap<>(); //<1>
+
+    @OnOpen //<2>
+    public void onOpen(Session session, @PathParam("username") String username) {
+        sessions.put(username, session);
+        broadcast("User " + username + " joined");
+    }
+
+    @OnClose //<3>
+    public void onClose(Session session, @PathParam("username") String username) {
+        sessions.remove(username);
+        broadcast("User " + username + " left");
+    }
+
+    @OnError //<4>
+    public void onError(Session session, @PathParam("username") String username, Throwable throwable) {
+        sessions.remove(username);
+        broadcast("User " + username + " left on error: " + throwable);
+    }
+
+    @OnMessage //<5>
+    public void onMessage(String message, @PathParam("username") String username) {
+        broadcast(">> " + username + ": " + message);
+    }
+
+    private void broadcast(String message) {
+        sessions.values().forEach(s -> {
+            s.getAsyncRemote().sendObject(message, result ->  {
+                if (result.getException() != null) {
+                    LOG.info("Unable to send message: " + result.getException());
+                }
+            });
+        });
+    }
+
+}
+----
+<1> Map der aktiven Client-Sessions
+<2> Event beim Öffnen der Websocket-Verbindung
+<3> Event beim Schließen der Websocket-Verbindung
+<4> Event beim Auftritt eines Fehlers bei der Websocket-Verbindung
+<5> Event bei einer Nachricht des Clients der Websocket-Verbindung

@@ -25,6 +25,8 @@ Ein Kfz-Service hat einen Plan-Fertigstellungstermin, einen Ist-Fertigstellungst
 
 == Technologiedokumentation
 
+<<websockets.adoc#, Websockets>>
+
 <<graphql.adoc#, GraphQL>>
 
 <<validation.adoc#, Validierung>>
