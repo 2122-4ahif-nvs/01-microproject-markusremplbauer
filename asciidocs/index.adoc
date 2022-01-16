@@ -35,5 +35,7 @@ Ein Kfz-Service hat einen Plan-Fertigstellungstermin, einen Ist-Fertigstellungst
 
 <<grpc.adoc#, gRPC>>
 
+<<security-jpa.adoc#, Security JPA>>
+
 
 

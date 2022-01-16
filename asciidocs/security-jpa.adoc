@@ -1,0 +1,86 @@
+= Secuirty JPA
+Markus Remplbauer
+ifndef::imagesdir[:imagesdir: images]
+//:toc-placement!:  // prevents the generation of the doc at this position, so it can be printed afterwards
+:sourcedir: ../src/main/java
+:icons: font
+:sectnums:    // Nummerierung der Überschriften / section numbering
+:toc: left
+
+ifdef::backend-html5[]
+
+link:https://quarkus.io/guides/security-jpa[Quarkus Security JPA]
+
+== Dependency
+[source,xml]
+----
+<dependency>
+    <groupId>io.quarkus</groupId>
+    <artifactId>quarkus-security-jpa</artifactId>
+</dependency>
+----
+
+
+== Nutzen
+
+Security für unsere API.
+Endpoints können so konfiguriert werden das nur User mit bestimmten Rollen darauf zugreifen können.
+
+== Umsetzung
+=== User Entity erstellen
+
+[source,java]
+----
+@Entity
+@Table(name = "test_user")
+@UserDefinition //<1>
+public class User extends PanacheEntity {
+    @Username
+    public String username;
+    @Password
+    public String password;
+    @Roles
+    public String role;
+
+    /**
+     * Adds a new user in the database
+     * @param username the user name
+     * @param password the unencrypted password (it will be encrypted with bcrypt)
+     * @param role the comma-separated roles
+     */
+    public static void add(String username, String password, String role) {
+        User user = new User();
+        user.username = username;
+        user.password = BcryptUtil.bcryptHash(password);
+        user.role = role;
+        user.persist();
+    }
+}
+----
+<1> Diese Annotation muss auf einer einzigen Entität vorhanden sein.
+<2> Hier wird das für den Benutzernamen verwendete Feld angegeben.
+<3> Dies ist das Feld, das für das Passwort verwendet wird.
+<4> Gibt die durch Komma getrennte Liste der Rollen an.
+<5> Diese Methode ermöglicht das Hinzufügen von Benutzern, während das Passwort mit Bycrypt gehasht wird.
+
+=== Endpoints mit Annotationen sichern
+[source,java]
+----
+@Path("/person")
+@RolesAllowed({"user", "admin"})
+public class PersonResource {
+----
+
+=== Endpoint zum User erstellen
+[source,java]
+----
+@POST
+@Transactional
+@PermitAll
+public Response addUser(
+        @NotEmpty  @QueryParam("username") String username,
+        @NotEmpty @QueryParam("password") String password) {
+    User.add(username, password, "user");
+    return Response.ok().build();
+}
+----
