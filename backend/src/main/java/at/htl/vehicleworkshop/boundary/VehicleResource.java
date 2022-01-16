@@ -4,6 +4,7 @@ import at.htl.vehicleworkshop.control.service.VehicleService;
 import at.htl.vehicleworkshop.entity.Vehicle;
 import org.eclipse.microprofile.graphql.*;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
@@ -13,6 +14,7 @@ import java.util.List;
 @Path("/vehicle")
 @GraphQLApi
 @Produces(MediaType.APPLICATION_JSON)
+@RolesAllowed({"user", "admin"})
 public class VehicleResource {
     @Inject
     VehicleService vehicleService;

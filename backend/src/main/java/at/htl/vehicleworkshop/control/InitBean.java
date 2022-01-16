@@ -4,10 +4,7 @@ import at.htl.vehicleworkshop.control.repository.EmployeeRepository;
 import at.htl.vehicleworkshop.control.repository.PersonRepository;
 import at.htl.vehicleworkshop.control.repository.ServiceRepository;
 import at.htl.vehicleworkshop.control.repository.VehicleRepository;
-import at.htl.vehicleworkshop.entity.Employee;
-import at.htl.vehicleworkshop.entity.Person;
-import at.htl.vehicleworkshop.entity.Service;
-import at.htl.vehicleworkshop.entity.Vehicle;
+import at.htl.vehicleworkshop.entity.*;
 import io.quarkus.runtime.StartupEvent;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -68,6 +65,9 @@ public class InitBean {
         serviceRepository.persist(service1);
         serviceRepository.persist(service2);
         serviceRepository.persist(service3);
+
+        User.add("admin", "admin", "admin");
+        User.add("user", "user", "user");
         tx.commit();
     }
 

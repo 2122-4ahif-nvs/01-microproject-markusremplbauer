@@ -1,17 +1,21 @@
-http://localhost:8080/api/vehicle/getAll
+GET http://localhost:8080/api/vehicle/getAll
+Authorization: Basic user user
 
 ###
 
 GET http://localhost:8080/vehicle/1
+Authorization: Basic user user
 
 ###
 
 GET http://localhost:8080/api/vehicle/owner/2
+Authorization: Basic user user
 
 ###
 
 POST http://localhost:8080/api/graphql
 Content-Type: application/graphql
+Authorization: Basic user user
 
 query allVehicles {
   allVehicles {
@@ -34,6 +38,7 @@ query allVehicles {
 
 POST http://localhost:8080/api/graphql
 Content-Type: application/graphql
+Authorization: Basic user user
 
 query findVehicle {
   findVehicle(vehicleId: 1) {
@@ -56,6 +61,7 @@ query findVehicle {
 
 POST http://localhost:8080/api/graphql
 Content-Type: application/graphql
+Authorization: Basic user user
 
 query findVehiclesByOwner {
   findVehiclesByOwner(ownerId: 2) {
@@ -71,6 +77,7 @@ query findVehiclesByOwner {
 
 POST http://localhost:8080/api/graphql
 Content-Type: application/graphql
+Authorization: Basic user user
 
 mutation addVehicle {
   addVehicle(vehicle: {
@@ -98,6 +105,7 @@ mutation addVehicle {
 
 POST http://localhost:8080/api/graphql
 Content-Type: application/graphql
+Authorization: Basic user user
 
 mutation removeVehicle {
   removeVehicle(vehicleId: 4) {
@@ -115,6 +123,13 @@ mutation removeVehicle {
     }
   }
 }
+
+###
+
+GET localhost:8080/api/person/findAll
+Authorization: Basic user user
+
+
 
 
 

@@ -2,6 +2,7 @@ package at.htl.vehicleworkshop.boundary;
 
 import java.util.List;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
@@ -14,6 +15,7 @@ import io.quarkus.qute.CheckedTemplate;
 import io.quarkus.qute.TemplateInstance;
 
 @Path("/person")
+@RolesAllowed({"user", "admin"})
 public class PersonResource {
     @Inject
     PersonService personService;
