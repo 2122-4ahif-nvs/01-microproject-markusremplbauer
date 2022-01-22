@@ -48,7 +48,7 @@ quarkus.security.users.file.plain-text=true
 
 [source,properties]
 ----
-admin=adm1n
+adm1n=adm1n
 user=us3r
 tom=pw
 ----
@@ -58,7 +58,7 @@ tom=pw
 
 [source,properties]
 ----
-admin=admin
+adm1n=admin
 user=user
 tom=emp
 ----
@@ -69,15 +69,10 @@ tom=emp
 import io.quarkus.security.identity.SecurityIdentity;
 ...
 
-@Inject
-SecurityIdentity securityIdentity;
-
 @GET
 @Path("findAll")
+@RolesAllowed({"emp", "admin"})
 public Response findAllPersons() {
-    if(!securityIdentity.hasRole("admin") && !securityIdentity.hasRole("emp")) { // <1>
-        return Response.status(403).build();
-    }
     return Response.ok(employeeService.findAll()).build();
 }
 ----
