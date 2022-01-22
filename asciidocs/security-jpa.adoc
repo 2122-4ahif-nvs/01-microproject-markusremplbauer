@@ -35,11 +35,11 @@ Endpoints können so konfiguriert werden das nur User mit bestimmten Rollen dara
 @Table(name = "test_user")
 @UserDefinition //<1>
 public class User extends PanacheEntity {
-    @Username
+    @Username //<2>
     public String username;
-    @Password
+    @Password //<3>
     public String password;
-    @Roles
+    @Roles //<4>
     public String role;
 
     /**
@@ -48,7 +48,7 @@ public class User extends PanacheEntity {
      * @param password the unencrypted password (it will be encrypted with bcrypt)
      * @param role the comma-separated roles
      */
-    public static void add(String username, String password, String role) {
+    public static void add(String username, String password, String role) { //<5>
         User user = new User();
         user.username = username;
         user.password = BcryptUtil.bcryptHash(password);
@@ -78,7 +78,7 @@ public class PersonResource {
 @Transactional
 @PermitAll
 public Response addUser(
-        @NotEmpty  @QueryParam("username") String username,
+        @NotEmpty @QueryParam("username") String username,
         @NotEmpty @QueryParam("password") String password) {
     User.add(username, password, "user");
     return Response.ok().build();
