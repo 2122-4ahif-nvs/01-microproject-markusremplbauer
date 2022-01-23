@@ -136,9 +136,6 @@ Authorization: Basic tom pw
 
 ###
 
-GET localhost:8080/api/employee/findAll
-Authorization: Basic adm1n adm1n
-
 
 
 

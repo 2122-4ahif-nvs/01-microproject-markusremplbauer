@@ -68,6 +68,7 @@ public class InitBean {
 
         User.add("admin", "admin", "admin");
         User.add("user", "user", "user");
+        User.add("tom", "pw", "emp");
         tx.commit();
     }
 
