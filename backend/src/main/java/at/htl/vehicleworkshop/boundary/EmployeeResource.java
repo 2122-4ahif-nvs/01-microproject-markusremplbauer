@@ -28,11 +28,19 @@ public class EmployeeResource {
 
     @POST
     @Transactional
-    @Path("addPerson")
-    public Response addPerson(@Valid Employee employee) {
+    @Path("addEmployee")
+    public Response addEmployee(@Valid Employee employee) {
         employeeService.addEmployee(employee);
         return Response.ok(employee).build();
     }
+
+    @GET
+    @Path("find/{id}")
+    public Response findEmployeeById(@PathParam("id") long employeeId) {
+        Employee employee = employeeService.findById(employeeId);
+        return Response.ok(employee).build();
+    }
+
 
     @DELETE
     @Transactional
