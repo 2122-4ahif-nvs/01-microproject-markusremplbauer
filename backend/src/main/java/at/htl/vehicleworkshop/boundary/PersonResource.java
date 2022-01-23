@@ -54,7 +54,7 @@ public class PersonResource {
     @Transactional
     @Path("remove/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Person removeEmployee(@PathParam("id") long personId) {
+    public Person removePerson(@PathParam("id") long personId) {
         Person person = personService.removePerson(personId);
         return person;
     }
