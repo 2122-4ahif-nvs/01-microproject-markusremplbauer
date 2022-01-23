@@ -38,7 +38,10 @@ public class EmployeeResource {
     @Path("find/{id}")
     public Response findEmployeeById(@PathParam("id") long employeeId) {
         Employee employee = employeeService.findById(employeeId);
-        return Response.ok(employee).build();
+        return (employee == null
+                ? Response.status(404)
+                : Response.ok(employee))
+                .build();
     }
 
 
@@ -48,6 +51,9 @@ public class EmployeeResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response removeEmployee(@PathParam("id") long employeeId) {
         Employee employee = employeeService.removeEmployee(employeeId);
-        return Response.ok(employee).build();
+        return (employee == null
+                ? Response.status(404)
+                : Response.ok(employee))
+                .build();
     }
 }
