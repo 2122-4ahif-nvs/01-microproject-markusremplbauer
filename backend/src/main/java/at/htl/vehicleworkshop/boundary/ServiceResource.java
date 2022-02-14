@@ -11,7 +11,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
-@Path("/service")
+@Path("v1/service")
 @RolesAllowed({"user", "admin"})
 public class ServiceResource {
     @Inject

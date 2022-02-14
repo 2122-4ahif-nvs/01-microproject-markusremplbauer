@@ -11,7 +11,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
-@Path("/vehicle")
+@Path("/v1/vehicle")
 @GraphQLApi
 @Produces(MediaType.APPLICATION_JSON)
 @RolesAllowed({"user", "admin"})

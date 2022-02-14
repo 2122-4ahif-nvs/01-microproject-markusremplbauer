@@ -14,7 +14,7 @@ import at.htl.vehicleworkshop.entity.Person;
 import io.quarkus.qute.CheckedTemplate;
 import io.quarkus.qute.TemplateInstance;
 
-@Path("/person")
+@Path("v1/person")
 @RolesAllowed({"user", "admin"})
 public class PersonResource {
     @Inject
