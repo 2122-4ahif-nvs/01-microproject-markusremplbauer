@@ -9,7 +9,7 @@ import javax.transaction.Transactional
 import javax.ws.rs.*
 import javax.ws.rs.core.MediaType
 
-@Path("vehicle")
+@Path("/api/vehicle")
 @GraphQLApi
 @Produces(MediaType.APPLICATION_JSON)
 @RolesAllowed("user", "admin")

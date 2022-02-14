@@ -11,7 +11,7 @@ import javax.validation.Valid
 import javax.ws.rs.*
 import javax.ws.rs.core.MediaType
 
-@Path("/person")
+@Path("/api/person")
 @RolesAllowed("user", "admin")
 class PersonApi {
 

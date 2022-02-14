@@ -9,7 +9,7 @@ import javax.validation.Valid
 import javax.ws.rs.*
 import javax.ws.rs.core.MediaType
 
-@Path("/service")
+@Path("/api/service")
 @RolesAllowed("user", "admin")
 class ServiceApi {
     @Inject
