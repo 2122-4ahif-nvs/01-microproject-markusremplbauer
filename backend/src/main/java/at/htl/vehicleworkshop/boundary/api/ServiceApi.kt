@@ -13,7 +13,7 @@ import javax.ws.rs.core.MediaType
 @RolesAllowed("user", "admin")
 class ServiceApi {
     @Inject
-    lateinit var serviceService: ServiceService;
+    lateinit var serviceService: ServiceService
 
     @GET
     @Path("findAll")

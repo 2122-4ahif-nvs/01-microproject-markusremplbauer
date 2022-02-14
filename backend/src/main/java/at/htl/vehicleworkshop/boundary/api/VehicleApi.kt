@@ -1,6 +1,5 @@
 package at.htl.vehicleworkshop.boundary.api
 
-import at.htl.vehicleworkshop.boundary.VehicleResource
 import at.htl.vehicleworkshop.control.service.VehicleService
 import at.htl.vehicleworkshop.entity.Vehicle
 import org.eclipse.microprofile.graphql.*
@@ -17,7 +16,7 @@ import javax.ws.rs.core.MediaType
 class VehicleApi {
 
     @Inject
-    lateinit var vehicleService: VehicleService;
+    lateinit var vehicleService: VehicleService
 
     @GET
     @Path("findAll")

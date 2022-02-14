@@ -16,7 +16,7 @@ import javax.ws.rs.core.MediaType
 class PersonApi {
 
     @Inject
-    lateinit var personService:PersonService;
+    lateinit var personService:PersonService
 
     @CheckedTemplate
     object Templates {

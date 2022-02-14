@@ -15,6 +15,8 @@ import io.quarkus.qute.CheckedTemplate;
 import io.quarkus.qute.TemplateInstance;
 
 @Path("v1/person")
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 @RolesAllowed({"user", "admin"})
 public class PersonResource {
     @Inject
@@ -55,8 +57,7 @@ public class PersonResource {
     @Path("remove/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Person removePerson(@PathParam("id") long personId) {
-        Person person = personService.removePerson(personId);
-        return person;
+        return personService.removePerson(personId);
     }
 
     @GET

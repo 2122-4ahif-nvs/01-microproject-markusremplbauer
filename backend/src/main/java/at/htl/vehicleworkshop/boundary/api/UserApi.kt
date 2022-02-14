@@ -1,6 +1,5 @@
 package at.htl.vehicleworkshop.boundary.api
 
-import at.htl.vehicleworkshop.entity.Person
 import at.htl.vehicleworkshop.entity.User
 import javax.annotation.security.PermitAll
 import javax.annotation.security.RolesAllowed

@@ -58,7 +58,6 @@ public class VehicleResource {
     @Mutation("removeVehicle")
     @Transactional
     public Vehicle removeEmployee(@Name("vehicleId") @PathParam("id") long vehicleId) {
-        Vehicle vehicle = vehicleService.removeVehicle(vehicleId);
-        return vehicle;
+        return vehicleService.removeVehicle(vehicleId);
     }
 }

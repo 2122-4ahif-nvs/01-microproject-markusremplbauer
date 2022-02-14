@@ -12,6 +12,8 @@ import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 @Path("v1/service")
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 @RolesAllowed({"user", "admin"})
 public class ServiceResource {
     @Inject
@@ -42,7 +44,6 @@ public class ServiceResource {
     @Path("remove/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Service removePerson(@PathParam("id") long serviceId) {
-        Service service = serviceService.removeService(serviceId);
-        return service;
+        return serviceService.removeService(serviceId);
     }
 }
